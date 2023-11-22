@@ -1,0 +1,108 @@
+* { padding:0;margin:0; }
+:root {
+  --grey-g-50: #656266;
+  --grey-g-100: #616161;
+  --grey-g-200: #303030;
+  --grey-g-300: #1A1A1A;
+  
+  /* font color */
+  --text-light: #E3E3E3;
+  --text-mid: #616161;
+  --text-dark: #303030;
+
+  /* strokes */
+  --stroke-s-50: #303030;
+  --stroke-s-100: #E1E1E1;
+  --stroke-s-200: #616161;
+
+  /* statees */
+  --state-hover: #F1F1F1;
+  --state-pressed: #F0F0F0;
+  --state-focused: #005BD3;
+
+  /* plain */
+  --white: #FFFFFF;
+  --background: #F1F1F1;
+}
+
+body {
+  font-size: 16px;
+  color: var(--text-mid);
+  background-color: var(--background);
+}
+
+header {
+  display: flex;
+  gap: 8px;
+  padding: 12px 16px;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-light);
+  background-color: var(--grey-g-300);
+}
+header .logo svg {
+  height: 30px;
+  width: 105px;
+}
+/* hide "shopify" text on mobile screens */
+@media (max-width: 768px) {
+  header .logo svg {
+    width: 30px;
+  }
+  header .logo svg #text {
+    display: none;
+  }
+}
+header > * {
+  width: 100%;
+}
+@media (max-width: 768px) {
+  header > *:nth-of-type(odd){
+    width: auto;
+  }
+}
+
+.search-bar {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.search-bar svg {
+  position: absolute;
+  left: 8px;
+}
+.search-bar input {
+  display: flex;
+  height: 32px;
+  width: 100%;
+  padding: 8px;
+  padding-left: 34px;
+  align-items: center;
+  gap: 6px;
+  color: var(--text-light);
+  background: var(--grey-g-200);
+  border-radius: 8px;
+  border: 1px solid var(--stroke-s-200);
+  outline: none;
+}
+.search-bar input:hover {
+  border-color: var(--stroke-s-100);
+}
+.search-bar input:focus {
+  border-color: var(--white);
+  box-shadow: 0 0 0 2px var(--white);
+}
+.search-bar input:active {
+  border-color: var(--white);
+  box-shadow: 0 0 0 2px var(--white);
+}
+.search-bar input::placeholder {
+  color: var(--grey-g-100);
+}
+.search-bar input:-webkit-autofill,
+.search-bar input:-webkit-autofill:hover,
+.search-bar input:-webkit-autofill:focus,
+.search-bar input:-webkit-autofill:active {
+  -webkit-text-fill-color: var(--text-light) !important;
+  -webkit-box-shadow: 0 0 0 30px var(--grey-g-200) inset !important;
+}
