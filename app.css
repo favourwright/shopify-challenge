@@ -1,4 +1,4 @@
-* { padding:0;margin:0; }
+* { padding:0;margin:0;box-sizing:border-box; font-family:Inter, 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; }
 :root {
   --grey-g-50: #656266;
   --grey-g-100: #616161;
@@ -23,6 +23,13 @@
   /* plain */
   --white: #FFFFFF;
   --background: #F1F1F1;
+
+  --green: #36FBA1;
+
+  /* focus ring */
+  --focus-ring-width: 2px;
+  --focus-ring-offset-width: 1px;
+  --focus-ring-width-with-offset: 3px;
 }
 
 body {
@@ -31,7 +38,7 @@ body {
   background-color: var(--background);
 }
 
-header {
+body > main > header {
   display: flex;
   gap: 8px;
   padding: 12px 16px;
@@ -40,24 +47,24 @@ header {
   color: var(--text-light);
   background-color: var(--grey-g-300);
 }
-header .logo svg {
+body > main > header .logo svg {
   height: 30px;
   width: 105px;
 }
 /* hide "shopify" text on mobile screens */
 @media (max-width: 768px) {
-  header .logo svg {
+  body > main > header .logo svg {
     width: 30px;
   }
-  header .logo svg #text {
+  body > main > header .logo svg #text {
     display: none;
   }
 }
-header > * {
+body > main > header > * {
   width: 100%;
 }
 @media (max-width: 768px) {
-  header > *:nth-of-type(odd){
+  body > main > header > *:nth-of-type(odd){
     width: auto;
   }
 }
@@ -90,11 +97,11 @@ header > * {
 }
 .search-bar input:focus {
   border-color: var(--white);
-  box-shadow: 0 0 0 2px var(--white);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--white);
 }
 .search-bar input:active {
   border-color: var(--white);
-  box-shadow: 0 0 0 2px var(--white);
+  box-shadow: 0 0 0 var(--focus-ring-width) var(--white);
 }
 .search-bar input::placeholder {
   color: var(--grey-g-100);
@@ -105,4 +112,118 @@ header > * {
 .search-bar input:-webkit-autofill:active {
   -webkit-text-fill-color: var(--text-light) !important;
   -webkit-box-shadow: 0 0 0 30px var(--grey-g-200) inset !important;
+}
+
+.tag-n-modal-wrap{
+  display: flex;
+  justify-content: end;
+  position: relative;
+}
+.tag {
+  display: flex;
+  height: 32px;
+  gap: 8px;
+}
+.tag > * {
+  background-color: var(--grey-g-200);
+}
+
+.tag button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px;
+  color: var(--text-light);
+  border-radius: 8px;
+  outline: none;
+  border: none;
+  cursor: pointer;
+}
+/* data-associated-modal-open */
+/* this is added to trigger from js when its modal is open */
+button[data-associated-modal-open] {
+  background: var(--grey-g-100) !important;
+}
+.tag button:hover{
+  background: var(--grey-g-100);
+}
+.tag button:focus{
+  background: var(--grey-g-100);
+  box-shadow: 
+    0 0 0 var(--focus-ring-offset-width) var(--grey-g-200),
+    0 0 0 var(--focus-ring-width-with-offset) var(--state-focused);
+}
+.tag > #store-name {
+  display: flex;
+  gap: 8px;
+  padding: 2px;
+  padding-left: 8px;
+}
+.tag > #store-name > *:nth-child(2){
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 28px;
+  width: 28px;
+  padding: 9px 5px 10px 5px;
+  color: rgba(0, 0, 0, 0.40);
+  background-color: var(--green);
+  border-radius: 6px;
+}
+@media (max-width: 768px) {
+  .tag > #store-name {
+    padding-left: 2px;
+  }
+  .tag > #store-name > *:nth-child(1){
+    display: none;
+  }
+}
+
+.popover-menu{
+  position: absolute;
+  display: none;
+  background: var(--white);
+  color: var(--text-dark);
+  border-radius: 14px;
+  border: 1px solid #DBDBDB;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+  z-index: 1;
+}
+.popover-menu.is-active {
+  display: block;
+}
+.tag-n-modal-wrap .popover-menu {
+  top:160%;
+}
+.popover-menu.notification{
+  width: 383px;
+}
+.popover-menu.notification section {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 16px;
+}
+.popover-menu.notification header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.popover-menu.notification header .title {
+  color: var(--text-dark);
+  font-size: 14px;
+  font-weight: 600;
+}
+.popover-menu.notification header .icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+}
+.popover-menu.notification main {
+  padding: 16px;
+  color: var(--text-mid);
+  background: var(--state-hover);
+  font-size: 13px;
+  font-weight: 600;
 }
