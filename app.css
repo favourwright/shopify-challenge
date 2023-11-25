@@ -38,13 +38,13 @@ body {
   background-color: var(--background);
 }
 
-body > main > header {
+body > header {
   display: flex;
   justify-content: center;
   color: var(--text-light);
   background-color: var(--grey-g-300);
 }
-body > main > header > div {
+body > header > div {
   width: 100%;
   max-width: 1440px;
   display: flex;
@@ -53,24 +53,24 @@ body > main > header > div {
   justify-content: space-between;
   align-items: center;
 }
-body > main > header .logo svg {
+body > header .logo svg {
   height: 30px;
   width: 105px;
 }
 /* hide "shopify" text on mobile screens */
 @media (max-width: 768px) {
-  body > main > header .logo svg {
+  body > header .logo svg {
     width: 30px;
   }
-  body > main > header .logo svg #text {
+  body > header .logo svg #text {
     display: none;
   }
 }
-body > main > header > div > * {
+body > header > div > * {
   width: 100%;
 }
 @media (max-width: 768px) {
-  body > main > header > div > *:nth-of-type(odd){
+  body > header > div > *:nth-of-type(odd){
     width: auto;
   }
 }
