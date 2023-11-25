@@ -159,7 +159,7 @@ button[data-associated-modal-open] {
   padding: 2px;
   padding-left: 8px;
 }
-.tag > #store-name > *:nth-child(2){
+.tag-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -179,6 +179,7 @@ button[data-associated-modal-open] {
   }
 }
 
+/* modal */
 .popover-menu{
   position: absolute;
   display: none;
@@ -195,6 +196,7 @@ button[data-associated-modal-open] {
 .tag-n-modal-wrap .popover-menu {
   top:160%;
 }
+
 .popover-menu.notification{
   width: 383px;
 }
@@ -226,4 +228,72 @@ button[data-associated-modal-open] {
   background: var(--state-hover);
   font-size: 13px;
   font-weight: 600;
+  line-height: 140%;
+}
+
+.popover-menu .menu{
+  display: flex;
+  flex-direction: column;
+  width: 320px;
+  padding: 6px 0;
+}
+.popover-menu .menu section {
+  padding: 4px 6px;
+  border-bottom: 1px solid var(--stroke-s-100);
+}
+.popover-menu .menu section:first-of-type {
+  padding-top: 0;
+}
+.popover-menu .menu section:last-of-type {
+  padding-bottom: 0;
+  border-bottom: none;
+}
+.popover-menu .menu ul li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px;
+  color: var(--text-dark);
+  font-size: 13px;
+  font-weight: 400;
+  border-radius: 8px;
+  list-style: none;
+  cursor: pointer;
+}
+.popover-menu .menu ul li:hover {
+  background: var(--state-hover);
+}
+.popover-menu .menu .contact {
+  padding: 8px;
+}
+.popover-menu .menu .contact h3 {
+  color: var(--text-dark);
+  font-size: 13px;
+  line-height: 140%;
+}
+.popover-menu .menu .contact span {
+  color: var(--text-mid);
+  font-size: 12px;
+  line-height: 130%;
+}
+.popover-menu .menu .name {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: var(--text-dark);
+  background: var(--state-hover);
+  padding: 4px 12px 4px 8px;
+  margin-bottom: 4px;
+  border-radius: 8px;
+}
+.popover-menu .menu .name > span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 140%;
+}
+.popover-menu .menu .tag-box {
+  font-size: 10.5px;
 }
