@@ -336,12 +336,14 @@ button[data-associated-modal-open] {
   color: var(--text-light);
   background: var(--grey-g-200);
   border-radius: 8px;
+  position: relative;
 }
 @media (max-width: 768px) {
   .trial-notice {
     flex-direction: column;
     align-items: flex-start;
     gap: 16px;
+    padding-right: 40px;
     border-radius: 0;
   }
 }
@@ -358,6 +360,13 @@ button[data-associated-modal-open] {
 }
 .trial-notice svg {
   cursor: pointer;
+}
+@media (max-width: 768px) {
+  .trial-notice svg {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+  }
 }
 .btn {
   display: flex;
