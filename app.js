@@ -3,7 +3,6 @@
   const modalAttrName = "data-modal-name" // the attribute name that holds the modal name on the modal element
   const modalActiveClass = "is-active" // added to modal when opened
   const activeModalTriggerAttrName = "data-associated-modal-open" // added to trigger when modal is open
-
   const getElementsFromAttr = ({attributeName, attributeValue, getAll}) => {
     if (!attributeName) return
     attributeValue = attributeValue || null
@@ -83,11 +82,73 @@
 
   const removeElemTrigger = "data-remove-elem-trigger" // the attribute name for triggers for elements that should be removed once clicked
   const elemToRemoveAttrName = "data-remove-elem" // the attribute name for elements that should be removed once clicked
-
   const handleRemoveElem = ({elemToRemoveAttrName, elemToRemove}) => {
     const elemToRemoveEl = getElementsFromAttr({ attributeName:elemToRemoveAttrName, attributeValue:elemToRemove })
     if (!elemToRemoveEl) return false
     elemToRemoveEl.remove()
+  }
+
+
+  const progressTextName = ".completion .count"
+  const progressBarProgressName = ".completion .progress .bar"
+  const updateTextProgress = ({ text }) => {
+    const progressText = document.querySelector(progressTextName)
+    if (!progressText) return
+    progressText.innerHTML = text
+  }
+  const updateBarProgress = ({ progress }) => {
+    const progressBar = document.querySelector(progressBarProgressName)
+    if (!progressBar) return
+    progressBar.style.width = `${progress}%`
+  }
+  const updateProgress = () => {
+    const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
+    const setUpListItems = setupGuide.querySelectorAll("li")
+    let doneCount = 0;
+    setUpListItems.forEach(item=>item.classList.contains("done") && doneCount++)
+    const progress = { text: `${doneCount} / ${setUpListItems.length} completed`, bar: doneCount / setUpListItems.length * 100 }
+    updateTextProgress({ text: progress.text })
+    updateBarProgress({ progress: progress.bar })
+  }
+  const closeOtherSetupGuideItems = ({ currentItem }) => {
+    return new Promise((resolve)=>{
+      const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
+      const setUpListItems = setupGuide.querySelectorAll("li")
+      setUpListItems.forEach(item=>item.classList.remove("is-active"))
+      resolve()
+    })
+  }
+  const handleSetupGuideClick = async ({item, setUpListItems}) => {
+    await closeOtherSetupGuideItems({ currentItem: item })
+    item.classList.add("is-active")
+  }
+  const simulateLoading = ({iconSeriesContainer}) => {
+    const defaultIcon = iconSeriesContainer.querySelector(".default")
+    const loadingIcon = iconSeriesContainer.querySelector(".loading")
+    const doneIcon = iconSeriesContainer.querySelector(".done")
+
+    return new Promise((resolve)=>{
+      // if done icon is showing, remove it and show default icon
+      if(doneIcon.classList.contains("show")) {
+        doneIcon.classList.remove("show")
+        defaultIcon.classList.add("show")
+        return resolve()
+      }
+      // else show loading icon, then done
+      defaultIcon.classList.remove("show")
+      loadingIcon.classList.add("show")
+      setTimeout(()=>{
+        loadingIcon.classList.remove("show")
+        doneIcon.classList.add("show")
+        return resolve()
+      }, 1000)
+    })
+  }
+  const handleSetupGuideCheckMarkClick = async ({iconSeriesContainer, setUpListItems}) => {
+    await simulateLoading({iconSeriesContainer})
+    const item = iconSeriesContainer.closest("li")
+    item.classList.toggle("done") // this is what would be counted for progress
+    updateProgress()
   }
 
 
@@ -108,6 +169,23 @@
       const elemToRemove = trigger.getAttribute(removeElemTrigger)
       trigger.addEventListener('click', (e)=>handleRemoveElem({elemToRemoveAttrName, elemToRemove}))
     })
+
+
+    // EVENTS FOR SETUP GUIDE
+    const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
+    const setUpListItems = setupGuide.querySelectorAll("li")
+    !!setUpListItems.length && setUpListItems.forEach((item)=>{
+      item.addEventListener('click', (e)=>handleSetupGuideClick({item, setUpListItems}))
+      // when user clicks on the checkmark svg
+      const icons = item.querySelectorAll('svg') // selects the first svg
+      icons.forEach((icon)=>icon.addEventListener('click', (e)=>{
+        // prevent event bubbling
+        e.stopPropagation()
+        const iconSeriesContainer = e.target.closest(".check-icon")
+        handleSetupGuideCheckMarkClick({iconSeriesContainer, setUpListItems})
+      }))
+    })
+
   }
   bootstrap()
 })()

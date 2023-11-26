@@ -371,3 +371,181 @@ button[data-associated-modal-open] {
 .btn:after {
   box-shadow: 0px -1px 0px 0px #B5B5B5 inset;
 }
+
+[data-setup-guide] {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+  margin-top: 16px;
+  background: var(--white);
+  color: var(--text-dark);
+  border-radius: 14px;
+  border: 1px solid #DBDBDB;
+  box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
+}
+@media (max-width: 768px) {
+  [data-setup-guide] {
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+[data-setup-guide] > header {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  padding: 8px;
+  color: var(--text-dark);
+}
+[data-setup-guide] > header  h2{
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 140%;
+}
+[data-setup-guide] > header  p{
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 140%;
+}
+.completion {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 12px;
+  font-weight: 400;
+  line-height: 130%;
+}
+.progress {
+  width: 72px;
+  height: 4px;
+  background: var(--text-light);
+  border-radius: 4px;
+}
+.progress .bar {
+  display: block;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--grey-g-300);
+  transition: width 0.5s ease-in-out;
+}
+.check-icon svg.default, .check-icon svg.loading, .check-icon svg.done{
+  display: none;
+}
+.check-icon svg.default.show {
+  display: block;
+  stroke-dasharray: 5;
+  fill: none;
+  cursor: pointer;
+}
+.check-icon svg.default:hover {
+  stroke-dasharray: 100;
+}
+.check-icon svg.default:active {
+  fill: #D9D9D9;
+}
+.check-icon svg.loading.show {
+  display: block;
+  fill: none;
+  cursor: progress;
+  animation: spin 1s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.check-icon svg.done.show {
+  display: block;
+  animation: grow .3s linear;
+}
+@keyframes grow {
+  0% {
+    transform: scale(.5);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+[data-setup-guide] > main > ul > li {
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 10px;
+}
+[data-setup-guide] > main > ul > li.is-active {
+  background: var(--state-hover);
+}
+[data-setup-guide] > main > ul > li > .content {
+  display: flex;
+  gap: 96px;
+  width: 100%;
+}
+[data-setup-guide] > main > ul > li > .content > .main {
+  flex-grow: 1;
+}
+[data-setup-guide] > main > ul > li > .content > .main,
+[data-setup-guide] > main > ul > li > .content > .main div {
+  display: flex;
+  flex-direction: column;
+}
+[data-setup-guide] > main > ul > li > .content > .main div {
+  gap: 16px;
+  align-items: start;
+}
+[data-setup-guide] > main > ul > li > .content h3 {
+  padding-top: 3px;
+  color: var(--text-dark);
+  font-size: 13px;
+  line-height: 140%;
+}
+[data-setup-guide] > main > ul > li > .content p {
+  color: var(--text-mid);
+  font-size: 13px;
+  line-height: 140%;
+}
+[data-setup-guide] > main > ul > li > .content > .main > div {
+  height: 0;
+  visibility: hidden;
+}
+[data-setup-guide] > main > ul > li.is-active > .content > .main{
+  gap: 16px;
+}
+[data-setup-guide] > main > ul > li.is-active > .content > .main > div {
+  height: auto;
+  visibility: visible;
+}
+[data-setup-guide] > main > ul > li.is-active > .content > .main > div > span {
+  display: inline-flex;
+  gap: 8px;
+}
+[data-setup-guide] > main > ul > li > .content a {
+  color: var(--state-focused);
+  font-size: 14px;
+  line-height: 140%;
+  text-decoration: none;
+}
+[data-setup-guide] > main > ul > li > .content .illustration {
+  display: none;
+  width: 156.145px;
+  min-width: 156.145px;
+  height: 120px;
+  align-items: center;
+  justify-content: center;
+}
+[data-setup-guide] > main > ul > li.is-active > .content .illustration{
+  display: flex;
+}
+@media (max-width: 768px) {
+  [data-setup-guide] > main > ul > li.is-active > .content .illustration{
+    display: none;
+  }
+}
+[data-setup-guide] > main > ul > li > .content .illustration img {
+  height: 100%;
+  width: 100%;
+  object-fit: contain;
+}
