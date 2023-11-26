@@ -558,6 +558,7 @@ button[data-associated-modal-open] {
 }
 [data-setup-guide] > main > ul > li.is-active > .content .illustration{
   display: flex;
+  align-items: center;
 }
 @media (max-width: 768px) {
   [data-setup-guide] > main > ul > li.is-active > .content .illustration{
