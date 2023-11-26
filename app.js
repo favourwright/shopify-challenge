@@ -81,11 +81,20 @@
   }
 
 
+  const removeElemTrigger = "data-remove-elem-trigger" // the attribute name for triggers for elements that should be removed once clicked
+  const elemToRemoveAttrName = "data-remove-elem" // the attribute name for elements that should be removed once clicked
+
+  const handleRemoveElem = ({elemToRemoveAttrName, elemToRemove}) => {
+    const elemToRemoveEl = getElementsFromAttr({ attributeName:elemToRemoveAttrName, attributeValue:elemToRemove })
+    if (!elemToRemoveEl) return false
+    elemToRemoveEl.remove()
+  }
+
+
   // bootstrap events
   const bootstrap = () => {
     // MODAL TRIGGER EVENTS
     const modalTriggers = getElementsFromAttr({ attributeName:triggerName, attributeValue:null, getAll:true })
-
     !!modalTriggers && modalTriggers.forEach((trigger)=>{
       const modalName = trigger.getAttribute(triggerName)
       trigger.addEventListener('click', (e)=>toggleModalVisibility({e, modalAttrName, modalName}))
@@ -93,7 +102,12 @@
     handleModalCloseOnOutsideClick()
 
 
-    // OTHER EVENTS
+    // EVENT FOR REMOVING ELEMENTS FROM DOM WHEN ITS TRIGGER IS CLICKED
+    const removeElemTriggers = getElementsFromAttr({ attributeName:removeElemTrigger, attributeValue:null, getAll:true })
+    !!removeElemTriggers && removeElemTriggers.forEach((trigger)=>{
+      const elemToRemove = trigger.getAttribute(removeElemTrigger)
+      trigger.addEventListener('click', (e)=>handleRemoveElem({elemToRemoveAttrName, elemToRemove}))
+    })
   }
   bootstrap()
 })()
