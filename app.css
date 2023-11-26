@@ -52,6 +52,7 @@ body > header > div {
   padding: 12px 16px;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 body > header .logo svg {
   height: 30px;
@@ -120,7 +121,7 @@ body > header > div > * {
   -webkit-box-shadow: 0 0 0 30px var(--grey-g-200) inset !important;
 }
 
-.tag-n-modal-wrap{
+.tag-wrap{
   display: flex;
   justify-content: end;
   position: relative;
@@ -188,6 +189,7 @@ button[data-associated-modal-open] {
 /* modal */
 .popover-menu{
   position: absolute;
+  right: 16px;
   display: none;
   background: var(--white);
   color: var(--text-dark);
@@ -199,12 +201,20 @@ button[data-associated-modal-open] {
 .popover-menu.is-active {
   display: block;
 }
-.tag-n-modal-wrap .popover-menu {
-  top:160%;
+#header .popover-menu {
+  top:110%;
 }
-
 .popover-menu.notification{
   width: 383px;
+}
+@media (max-width: 768px) {
+  .popover-menu.notification{
+    width: 100%;
+    max-width: 92%;
+  }
+}
+.popover-menu.menu{
+  width: 320px;
 }
 .popover-menu.notification section {
   display: flex;
@@ -240,7 +250,6 @@ button[data-associated-modal-open] {
 .popover-menu .menu{
   display: flex;
   flex-direction: column;
-  width: 320px;
   padding: 6px 0;
 }
 .popover-menu .menu section {
@@ -312,6 +321,11 @@ button[data-associated-modal-open] {
   width: 100%;
   max-width: 800px;
   margin-top: 32px;
+}
+@media (max-width: 768px) {
+  #site-wrap > #content {
+    margin-top: 28px;
+  }
 }
 
 .trial-notice {

@@ -153,7 +153,7 @@
 
 
   // bootstrap events
-  const bootstrap = () => {
+  (() => {
     // MODAL TRIGGER EVENTS
     const modalTriggers = getElementsFromAttr({ attributeName:triggerName, attributeValue:null, getAll:true })
     !!modalTriggers && modalTriggers.forEach((trigger)=>{
@@ -162,7 +162,6 @@
     })
     handleModalCloseOnOutsideClick()
 
-
     // EVENT FOR REMOVING ELEMENTS FROM DOM WHEN ITS TRIGGER IS CLICKED
     const removeElemTriggers = getElementsFromAttr({ attributeName:removeElemTrigger, attributeValue:null, getAll:true })
     !!removeElemTriggers && removeElemTriggers.forEach((trigger)=>{
@@ -170,12 +169,10 @@
       trigger.addEventListener('click', (e)=>handleRemoveElem({elemToRemoveAttrName, elemToRemove}))
     })
 
-
     // EVENTS FOR SETUP GUIDE
     const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
     const setUpGuideVisibilityTrigger = setupGuide.querySelector("header .title svg")
     const setUpListItems = setupGuide.querySelectorAll("li")
-
     setUpGuideVisibilityTrigger.addEventListener('click', ()=>setupGuide.classList.toggle("show"))
     !!setUpListItems.length && setUpListItems.forEach((item)=>{
       item.addEventListener('click', (e)=>handleSetupGuideClick({item, setUpListItems}))
@@ -189,6 +186,5 @@
       }))
     })
 
-  }
-  bootstrap()
+  })()
 })()
