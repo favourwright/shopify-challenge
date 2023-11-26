@@ -173,7 +173,10 @@
 
     // EVENTS FOR SETUP GUIDE
     const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
+    const setUpGuideVisibilityTrigger = setupGuide.querySelector("header .title svg")
     const setUpListItems = setupGuide.querySelectorAll("li")
+
+    setUpGuideVisibilityTrigger.addEventListener('click', ()=>setupGuide.classList.toggle("show"))
     !!setUpListItems.length && setUpListItems.forEach((item)=>{
       item.addEventListener('click', (e)=>handleSetupGuideClick({item, setUpListItems}))
       // when user clicks on the checkmark svg

@@ -408,6 +408,17 @@ button[data-associated-modal-open] {
   font-weight: 400;
   line-height: 140%;
 }
+[data-setup-guide] > header .title {
+  display: flex;
+  justify-content: space-between;
+}
+[data-setup-guide] > header .title svg {
+  border-radius: 6px;
+  cursor: pointer;
+}
+[data-setup-guide] > header .title svg:hover {
+  background: var(--state-hover);
+}
 .completion {
   display: flex;
   align-items: center;
@@ -469,6 +480,15 @@ button[data-associated-modal-open] {
   100% {
     transform: scale(1);
   }
+}
+[data-setup-guide] > main {
+  display: none;
+}
+[data-setup-guide].show > main {
+  display: block;
+}
+[data-setup-guide].show > header .title svg {
+  transform: rotate(180deg);
 }
 [data-setup-guide] > main > ul > li {
   display: flex;
