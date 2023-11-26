@@ -91,16 +91,19 @@
 
   const progressTextName = ".completion .count"
   const progressBarProgressName = ".completion .progress .bar"
+  // updates the text progress: "1 / 5 completed"
   const updateTextProgress = ({ text }) => {
     const progressText = document.querySelector(progressTextName)
     if (!progressText) return
     progressText.innerHTML = text
   }
+  // updates the progress bar: "20%""
   const updateBarProgress = ({ progress }) => {
     const progressBar = document.querySelector(progressBarProgressName)
     if (!progressBar) return
     progressBar.style.width = `${progress}%`
   }
+  // manages the progress bar and text progress update
   const updateProgress = () => {
     const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
     const setUpListItems = setupGuide.querySelectorAll("li")
@@ -110,6 +113,7 @@
     updateTextProgress({ text: progress.text })
     updateBarProgress({ progress: progress.bar })
   }
+  // closes all open setup guide items so the active one can be opened
   const closeOtherSetupGuideItems = ({ currentItem }) => {
     return new Promise((resolve)=>{
       const setupGuide = getElementsFromAttr({ attributeName:"data-setup-guide" })
@@ -118,10 +122,12 @@
       resolve()
     })
   }
+  // handles opening/closing setup guide items
   const handleSetupGuideClick = async ({item, setUpListItems}) => {
     await closeOtherSetupGuideItems({ currentItem: item })
     item.classList.add("is-active")
   }
+  // simulates loading for setup guide checkmarks when clicked
   const simulateLoading = ({iconSeriesContainer}) => {
     const defaultIcon = iconSeriesContainer.querySelector(".default")
     const loadingIcon = iconSeriesContainer.querySelector(".loading")
@@ -144,6 +150,7 @@
       }, 1000)
     })
   }
+  // handles setup guide checkmark clicks
   const handleSetupGuideCheckMarkClick = async ({iconSeriesContainer, setUpListItems}) => {
     await simulateLoading({iconSeriesContainer})
     const item = iconSeriesContainer.closest("li")
@@ -185,6 +192,5 @@
         handleSetupGuideCheckMarkClick({iconSeriesContainer, setUpListItems})
       }))
     })
-
   })()
 })()
