@@ -196,7 +196,7 @@ button[data-associated-modal-open] {
   border-radius: 14px;
   border: 1px solid #DBDBDB;
   box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.05);
-  z-index: 1;
+  z-index: 10;
 }
 .popover-menu.is-active {
   display: block;
@@ -277,6 +277,9 @@ button[data-associated-modal-open] {
 }
 .popover-menu .menu ul li:hover {
   background: var(--state-hover);
+}
+.popover-menu .menu ul li:focus {
+  background: blue;
 }
 .popover-menu .menu .contact {
   padding: 8px;

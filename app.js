@@ -24,6 +24,7 @@
       const trigger = getElementsFromAttr({ attributeName:triggerName, attributeValue:modalName })
       if (!trigger) return
       toOpen ? trigger.setAttribute(activeModalTriggerAttrName, true) : trigger.removeAttribute(activeModalTriggerAttrName)
+      trigger.ariaExpanded = toOpen ? "true" : "false"
       resolve()
     })
   }
@@ -33,6 +34,10 @@
     if (!modal) return false
     modal.classList.add(modalActiveClass)
     toggleDataAttrOnModalTrigger({triggerName, modalName, toOpen: true})
+    const allMenuItems = modal.querySelectorAll(
+      '[role="menuitem"]'
+    );
+    allMenuItems[0].focus();
   }
   // close modal
   const handleCloseModal = ({modalAttrName, modalName}) => {

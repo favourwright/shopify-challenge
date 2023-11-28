@@ -12,7 +12,7 @@
     <header id="header">
       <div>
         <div class="logo">
-          <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="none">
+          <svg xmlns="http://www.w3.org/2000/svg" height="30" fill="none" tabindex="1">
             <g id="text">
               <path d="M36.2166 16.6517C35.3235 16.1564 34.8535 15.7555 34.8535 15.1895C34.8535 14.4584 35.4881 14.0103 36.4987 14.0103C37.6738 14.0103 38.7079 14.5056 38.7079 14.5056L39.5305 11.9821C39.5305 11.9821 38.7784 11.3925 36.5457 11.3925C33.4433 11.3925 31.2811 13.1849 31.2811 15.6847C31.2811 17.0998 32.2917 18.1846 33.6313 18.9629C34.7125 19.5761 35.0885 20.0241 35.0885 20.6609C35.0885 21.3448 34.5479 21.8873 33.5373 21.8873C32.0332 21.8873 30.623 21.109 30.623 21.109L29.7534 23.6325C29.7534 23.6325 31.0696 24.505 33.2553 24.505C36.4517 24.505 38.7314 22.9249 38.7314 20.0949C38.7784 18.5384 37.6033 17.4535 36.2166 16.6517Z" fill="white"/>
               <path d="M48.9549 11.3453C47.3803 11.3453 46.1581 12.1 45.1945 13.232L45.1475 13.2084L46.5107 6.039H42.9383L39.4834 24.2692H43.0323L44.2074 18.0431C44.6775 15.6847 45.8761 14.2461 47.0042 14.2461C47.8033 14.2461 48.1088 14.7886 48.1088 15.5668C48.1088 16.0621 48.0618 16.6517 47.9443 17.1469L46.6047 24.2928H50.1536L51.5402 16.9347C51.7047 16.1564 51.7988 15.2366 51.7988 14.5999C51.8458 12.5481 50.8116 11.3453 48.9549 11.3453Z" fill="white"/>
@@ -42,20 +42,34 @@
               tabindex="1"
               placeholder="Search"
               autocomplete="search"
-              aria-label="Search"
-              role="search"
+              aria-label="Search input"
+              role="search input"
             >
           </label>
         </div>
 
         <div class="tag-wrap">
           <div class="tag">
-            <button id="icon" type="button" tabindex="2" data-modal-trigger="notification">
+            <button
+              id="icon"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="notification-menu-content"
+              tabindex="2"
+              data-modal-trigger="notification">
               <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                 <path fill-rule="evenodd" clip-rule="evenodd" d="M7.25203 14.4239L4.8061 14.1427C2.95144 13.9295 2.42542 11.4844 4.02838 10.5274L4.0933 10.4886C4.966 9.96761 5.50045 9.02609 5.50045 8.00969V7.5C5.50045 5.01472 7.51517 3 10.0005 3C12.4857 3 14.5005 5.01472 14.5005 7.5V8.00969C14.5005 9.02609 15.0349 9.96761 15.9076 10.4886L15.9725 10.5274C17.5755 11.4844 17.0495 13.9295 15.1948 14.1427L12.652 14.435V14.8C12.652 16.2912 11.4432 17.5 9.95203 17.5C8.46086 17.5 7.25203 16.2912 7.25203 14.8V14.4239ZM11.152 14.5H8.75203V14.8C8.75203 15.4627 9.28929 16 9.95203 16C10.6148 16 11.152 15.4627 11.152 14.8V14.5ZM8.00045 13H12.0005L15.0235 12.6525C15.453 12.6032 15.5748 12.0369 15.2036 11.8153L15.1387 11.7766C15.0591 11.7291 14.9815 11.6793 14.9057 11.6273C14.7506 11.521 14.6036 11.4055 14.4651 11.2818C14.4405 11.2598 14.4162 11.2377 14.3922 11.2152C13.5144 10.395 13.0005 9.23833 13.0005 8.00969V7.5C13.0005 5.84315 11.6573 4.5 10.0005 4.5C8.3436 4.5 7.00045 5.84315 7.00045 7.5V8.00969C7.00045 9.23833 6.48651 10.395 5.60871 11.2152C5.58469 11.2377 5.56039 11.2598 5.53583 11.2818C5.39734 11.4055 5.25029 11.521 5.09523 11.6273C5.01945 11.6793 4.94176 11.7291 4.86222 11.7766L4.79729 11.8153C4.4261 12.0369 4.5479 12.6032 4.97739 12.6525L8.00045 13Z" fill="#E3E3E3"/>
               </svg>
             </button>
-            <button id="store-name" type="button" tabindex="2" data-modal-trigger="menu">
+            <button
+              id="store-name"
+              type="button"
+              aria-haspopup="true"
+              aria-expanded="false"
+              aria-controls="store-name-menu-content"
+              tabindex="2"
+              data-modal-trigger="menu">
               <span>Davii Collections</span>
               <span class="tag-box">DC</span>
             </button>
@@ -63,10 +77,15 @@
         </div>
 
         <!-- notification modal -->
-        <div data-modal-name="notification" class="popover-menu notification">
+        <div
+          role="menu"
+          id="notification-menu-content"
+          aria-labelledby="icon"
+          data-modal-name="notification"
+          class="popover-menu notification">
           <section>
             <header>
-              <span class="title">Alerts</span>
+              <span role="menuitem" class="title">Alerts</span>
               <span class="icon">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                   <path d="M3 6C3 5.58579 3.33579 5.25 3.75 5.25H16.25C16.6642 5.25 17 5.58579 17 6C17 6.41421 16.6642 6.75 16.25 6.75H3.75C3.33579 6.75 3 6.41421 3 6Z" fill="#616161"/>
@@ -79,13 +98,18 @@
                 </svg>
               </span>
             </header>
-            <main>
+            <main role="menuitem">
               Alerts about your store and account will show here
             </main>
           </section>
         </div>
         <!-- menu modal -->
-        <div data-modal-name="menu" class="popover-menu menu">
+        <div
+          role="menu"
+          id="store-name-menu-content"
+          aria-labelledby="store-name"
+          data-modal-name="menu"
+          class="popover-menu menu">
           <div class="menu">
             <section>
               <div class="name">
@@ -103,17 +127,17 @@
                   <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" fill="none">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M13.257 3H6.74302C6.35944 3 5.9971 3.17611 5.76012 3.47772L3.37394 6.51468C3.13169 6.823 3 7.20375 3 7.59586V8.25C3 9.31867 3.60958 10.245 4.5 10.7001V15.25C4.5 16.2165 5.2835 17 6.25 17H13.75C14.7165 17 15.5 16.2165 15.5 15.25V10.7001C16.3904 10.245 17 9.31867 17 8.25V7.76879C17 7.26465 16.8307 6.77511 16.5192 6.3787L14.2399 3.47772C14.0029 3.17611 13.6406 3 13.257 3ZM13 15.5H13.75C13.8881 15.5 14 15.3881 14 15.25V11C13.212 11 12.5014 10.6686 12 10.1375C11.4986 10.6686 10.788 11 10 11C9.21199 11 8.50138 10.6686 8 10.1375C7.49862 10.6686 6.78801 11 6 11V15.25C6 15.3881 6.11193 15.5 6.25 15.5H10V13C10 12.4477 10.4477 12 11 12H12C12.5523 12 13 12.4477 13 13V15.5ZM6 9.5H5.75C5.05964 9.5 4.5 8.94036 4.5 8.25V7.59586C4.5 7.53985 4.51881 7.48545 4.55342 7.44141L6.86453 4.5H13.1355L15.3397 7.30543C15.4436 7.43757 15.5 7.60075 15.5 7.76879V8.25C15.5 8.94036 14.9404 9.5 14.25 9.5H14C13.3096 9.5 12.75 8.94036 12.75 8.25V7.75C12.75 7.33579 12.4142 7 12 7C11.5858 7 11.25 7.33579 11.25 7.75V8.25C11.25 8.94036 10.6904 9.5 10 9.5C9.30964 9.5 8.75 8.94036 8.75 8.25V7.75C8.75 7.33579 8.41421 7 8 7C7.58579 7 7.25 7.33579 7.25 7.75V8.25C7.25 8.94036 6.69036 9.5 6 9.5Z" fill="#303030"/>
                   </svg>
-                  <span>All stores</span>
+                  <span role="menuitem" tabindex="4">All stores</span>
                 </li>
               </ul>
             </section>
             <section>
               <ul>
-                <li>Help Center</li>
-                <li>Changelog</li>
-                <li>Community forums</li>
-                <li>Hire a Shopify Partner</li>
-                <li>Keyboard shortcuts</li>
+                <li role="menuitem" tabindex="4">Help Center</li>
+                <li role="menuitem" tabindex="4">Changelog</li>
+                <li role="menuitem" tabindex="4">Community forums</li>
+                <li role="menuitem" tabindex="4">Hire a Shopify Partner</li>
+                <li role="menuitem" tabindex="4">Keyboard shortcuts</li>
               </ul>
             </section>
             <section>
@@ -122,8 +146,8 @@
                 <span>davidmicheal@gmail.com</span>
               </div>
               <ul>
-                <li>Manage account</li>
-                <li>Log out</li>
+                <li role="menuitem" tabindex="4">Manage account</li>
+                <li role="menuitem" tabindex="4">Log out</li>
               </ul>
             </section>
           </div>
@@ -133,7 +157,7 @@
 
     <main id="site-wrap">
       <div id="content">      
-        <div class="trial-notice" data-remove-elem="trial-notice">
+        <div class="trial-notice" data-remove-elem="trial-notice" tabindex="5">
           <h3 class="title">Extend your trial for $1/month for 3 months on select plans.</h3>
           <span>
             <button class="btn" type="button">Learn more</button>
@@ -180,7 +204,7 @@
                   </svg>
                 </div>
                 <div class="content">
-                  <div class="main">
+                  <div class="main" tabindex="6">
                     <h3>Customize your online store</h3>
                     <div>
                       <p>Choose a theme and add your logo, colors, and images to reflect your brand. <a href="#">Learn more</a></p>
@@ -209,7 +233,7 @@
                   </svg>
                 </div>
                 <div class="content">
-                  <div class="main">
+                  <div class="main" tabindex="6">
                     <h3>Add your first product</h3>
                     <div>
                       <p>Write a description, add photos, and set pricing for the products you plan to sell. <a href="#">Learn more</a></p>
@@ -241,7 +265,7 @@
                   </svg>
                 </div>
                 <div class="content">
-                  <div class="main">
+                  <div class="main" tabindex="6">
                     <h3>Add a custom domain</h3>
                     <div>
                       <p>Your current domain is 222219.myshopify.com but you can add a custom domain to help customers find your online store. <a href="#">Learn more</a></p>
@@ -270,7 +294,7 @@
                   </svg>
                 </div>
                 <div class="content">
-                  <div class="main">
+                  <div class="main" tabindex="6">
                     <h3>Name your store</h3>
                     <div>
                       <p>Your temporary store name is currently Davii collections. The store name appears in your admin and your online store. <a href="#">Learn more</a></p>
@@ -299,7 +323,7 @@
                   </svg>
                 </div>
                 <div class="content">
-                  <div class="main">
+                  <div class="main" tabindex="6">
                     <h3>Set up a payment provider</h3>
                     <div>
                       <p>Choose a payment provider to start accepting payments. You’ll need to create an account with the payment provider and set it up with your Shopify store. <a href="#">Learn more</a></p>
