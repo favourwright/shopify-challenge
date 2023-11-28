@@ -380,19 +380,59 @@ button[data-associated-modal-open] {
   background: var(--white);
   cursor: pointer;
   position: relative;
+  border: 1px solid rgba(0, 0, 0, 0.10);
+  border-bottom: 0;
+  box-shadow: 0px 1.5px 0px 0px #B5B5B5;
+  z-index: 2;
+}
+.btn:hover{
+  background: var(--state-hover);
+}
+.btn:active{
+  border-color: rgba(0, 0, 0, 0.10);
+  box-shadow:
+    0px 1.5px 0px 0px var(--state-hover),
+    0px 3px 0px 0px #E2E2E2 inset;
+}
+.btn:focus:before {
+  box-shadow: 0 0 0 3px #005BD3;
+}
+.btn.dark {
+  color: #F6F3F6;
+  background: #404040;
+  border: 2px solid #666666;
+  border-bottom: 0;
+  box-shadow: 0px 2px 0px 0px #000000;
+}
+.btn.dark:hover {
+  background: #2A2A2A;
+}
+.btn.dark:active {
+  border-color: #666666;
+  box-shadow:
+    0px 2px 0px 0px #000000,
+    0px 4px 0px 0px #000000 inset;
+}
+.btn.plain {
+  border-color: transparent;
+  background: none;
+  box-shadow: none;
+}
+.btn.plain:hover {
+  background: #E7E7E7 !important;
+}
+.btn.plain:active {
+  background: #E0E0E0 !important;
 }
 .btn:before, .btn:after {
   content: "";
   position: absolute;
-  inset: 0;
-  border-radius: 6px;
-  pointer-events: none
+  inset: -4px;
+  border-radius: 8px;
+  pointer-events: none;
 }
-.btn:before {
-  border: 1px solid rgba(0, 0, 0, 0.10);
-}
-.btn:after {
-  box-shadow: 0px -1px 0px 0px #B5B5B5 inset;
+.btn.dark:focus:before {
+  box-shadow: 0 0 0 3px #005BD3;
 }
 
 [data-setup-guide] {
@@ -563,7 +603,7 @@ button[data-associated-modal-open] {
 }
 [data-setup-guide] > main > ul > li.is-active > .content > .main > div > span {
   display: inline-flex;
-  gap: 8px;
+  gap: 16px;
 }
 [data-setup-guide] > main > ul > li > .content a {
   color: var(--state-focused);
